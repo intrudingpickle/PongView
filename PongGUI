@@ -1,11 +1,10 @@
-
 package com.neumont.csc150.PongView;
 
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class PongGUI extends JPanel {
+public class PongGUI extends JPanel implements IPongGUI{
 	private static final long serialVersionUID = 1L;
 
 	public static void main(String[] args) {
@@ -17,6 +16,24 @@ public class PongGUI extends JPanel {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		panel.setBackground(Color.BLACK);
-		
+
+	}
+
+	@Override
+	public void createMainMenu() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateGame() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void displayMessage(String message) {
+		// TODO Auto-generated method stub
+
 	}
 }
