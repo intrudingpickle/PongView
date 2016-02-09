@@ -1,9 +1,11 @@
 package com.neumont.csc150.PongView;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 public interface IPongGUI {
-  
-  public void createMainMenu();
-  public void updateGame();
-  public void displayMessage(String message);
-  
+	public void updateGame();
+	public void displayMessage(String message);
+	public void createMainMenu(JFrame frame, JPanel panel);
+	public void initGUI();
 }
