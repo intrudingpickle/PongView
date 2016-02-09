@@ -1,1 +1,8 @@
 
+public interface IPongGUI {
+  
+  public void createMainMenu();
+  public void updateGame();
+  public void displayMessage(String message);
+  
+}
