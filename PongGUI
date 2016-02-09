@@ -6,6 +6,10 @@ import javax.swing.JPanel;
 
 public class PongGUI extends JPanel implements IPongGUI{
 	private static final long serialVersionUID = 1L;
+	private static final int LEFT_PADDLE = 14; // generic values, use these to place paddles
+	private static final int RIGHT_PADDLE = 339;
+	private static final int TOP_OF_PANEL = 0;
+	private static final int BOTTOM OF PANEL = 499;
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("PONG");
@@ -36,4 +40,55 @@ public class PongGUI extends JPanel implements IPongGUI{
 		// TODO Auto-generated method stub
 
 	}
+	
+	public void moveBall() {
+		ball.setX((ball.getX() + ball.getXTraverse()) * ballXMod);
+		ball.setY((ball.getY() + ball.getYTraverse()) * ballYMod);
+	}
+
+	public void checkCollision() {
+		if (ball.getYCoordinate() <= TOP_OF_PANEL || ball.getYCoordinate() >= BOTTOM_OF_PANEL) {
+			this.ballHitsBorder();
+		}
+		if (checkLeftPaddle() || ball.getXCoordinate() >= RIGHT_PADDLE) {
+			this.ballHitsPaddle();
+		}
+	}
+
+	public boolean checkLeftPaddle() {
+		int x = ball.getXCoordinate();
+		int y = ball.getYCoordinate();
+
+		if (x <= LEFT_PADDLE) { // static values necessary for the generation of the game in the GUI
+			if (y >= paddle1.getTopCoordinate() && y <= paddle1.getBottomCoordinate()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean checkRightPaddle() {
+		int x = ball.getXCoordinate();
+		int y = ball.getYCoordinate();
+
+		if (x >= IPongGUI.RIGHT_PADDLE) { // static values necessary for the generation of the game in the GUI
+			if (y >= paddle2.getTopCoordinate() && y <= paddle1.getBottomCoordinate()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void ballHitsPaddle() {
+		ballXMod *= -1;
+		ball.setXTraverse(ball.getXTraverse() + 1);
+		ball.setYTraverse(ball.getYTraverse() + 1);
+	}
+
+	public void ballHitsBorder() {
+		ballYMod *= -1;
+		ball.setXTraverse(ball.getXTraverse() + 1);
+		ball.setYTraverse(ball.getYTraverse() + 1);
+	}
+	
 }
