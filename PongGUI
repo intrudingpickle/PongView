@@ -1,28 +1,42 @@
 package com.neumont.csc150.PongView;
-
-import java.awt.Color;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class PongGUI extends JPanel implements IPongGUI{
-	private static final long serialVersionUID = 1L;
 
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("PONG");
-		JPanel panel = new JPanel();
-		frame.setSize(1000, 800);
+public class PongGUI implements IPongGUI{
+	private JFrame frame;
+	private JPanel panel;
+	public static Paddle paddle;
+
+
+	public void initGUI(){
+		this.frame = new JFrame("PONG");
+		this.panel = new JPanel();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(panel);
-		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		frame.pack();
+		frame.setSize(1000, 800);
+		frame.setLocationRelativeTo(null);
 		panel.setBackground(Color.BLACK);
+		createMainMenu(this.frame, this.panel);
+		
 
 	}
-
 	@Override
-	public void createMainMenu() {
-		// TODO Auto-generated method stub
+	public void createMainMenu(JFrame frame, JPanel panel) {
+		JButton start = new JButton("Start");
+		start.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(frame, "Hi.");
+			}
+
+		});
+		this.panel.add(start);
 	}
 
 	@Override
@@ -36,4 +50,8 @@ public class PongGUI extends JPanel implements IPongGUI{
 		// TODO Auto-generated method stub
 
 	}
+
+
+
+
 }
